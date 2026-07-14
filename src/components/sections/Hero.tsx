@@ -3,9 +3,16 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ChevronDown, Leaf } from "lucide-react";
+import { ChevronDown, Leaf, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { HorizonMark } from "@/components/ui/HorizonMark";
 import { WHATSAPP_LINK } from "@/lib/constants";
+
+const TRUST_ITEMS = [
+  { icon: Sparkles, label: "+20 anos de história" },
+  { icon: Users, label: "Turmas acolhedoras" },
+  { icon: ShieldCheck, label: "Ambiente seguro" },
+];
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -14,15 +21,15 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
     <section
       id="inicio"
       ref={ref}
-      className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-primary-dark"
+      className="relative h-[100svh] min-h-[620px] w-full overflow-hidden bg-primary-dark"
     >
       <motion.div
         style={{ y: imageY, transformOrigin: "50% 100%" }}
@@ -46,27 +53,27 @@ export function Hero() {
         />
       </motion.div>
 
-      {/* Leve véu escuro para legibilidade, preservando as cores da foto (praia, pôr do sol, natureza) */}
+      {/* Véu escuro uniforme para legibilidade geral */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(10,25,15,.45) 0%, rgba(10,25,15,.12) 22%, rgba(10,25,15,.14) 60%, rgba(10,25,15,.3) 100%)",
+            "linear-gradient(180deg, rgba(12,16,9,.48) 0%, rgba(12,16,9,.2) 30%, rgba(12,16,9,.26) 60%, rgba(12,16,9,.4) 100%)",
         }}
         aria-hidden
       />
-      {/* Véu radial atrás do texto para garantir contraste sem esconder a foto */}
+      {/* Realce concentrado atrás do título, como a capa de um catálogo impresso */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at 50% 48%, rgba(8,20,12,.4) 0%, rgba(8,20,12,0) 70%)",
+            "radial-gradient(ellipse 65% 42% at 50% 46%, rgba(8,12,6,.4) 0%, rgba(8,12,6,0) 72%)",
         }}
         aria-hidden
       />
-      {/* Gradiente inferior sutil que funde a foto com o fundo do site, sem cobrir as crianças na areia */}
+      {/* Gradiente inferior que funde a foto com o fundo do site */}
       <div
-        className="absolute inset-x-0 bottom-0 h-12 sm:h-16 lg:h-24"
+        className="absolute inset-x-0 bottom-0 h-16 sm:h-20 lg:h-28"
         style={{
           background:
             "linear-gradient(180deg, rgba(20,25,12,0) 0%, var(--color-background) 100%)",
@@ -75,82 +82,91 @@ export function Hero() {
       />
 
       <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-10 -left-10 size-72 rounded-full bg-accent/20 blur-3xl animate-float" />
-        <div
-          className="absolute bottom-10 -right-16 size-96 rounded-full bg-primary/20 blur-3xl animate-float"
-          style={{ animationDelay: "1.5s" }}
-        />
-        <Leaf className="absolute top-[22%] right-[12%] size-10 text-white/20 rotate-12 hidden sm:block animate-float" />
+        <Leaf className="absolute top-[20%] right-[10%] size-9 text-white/15 rotate-12 hidden sm:block animate-float" />
         <Leaf
-          className="absolute bottom-[28%] left-[8%] size-8 text-white/15 -rotate-12 hidden sm:block animate-float"
+          className="absolute bottom-[32%] left-[7%] size-7 text-white/10 -rotate-12 hidden sm:block animate-float"
           style={{ animationDelay: "2s" }}
         />
       </div>
 
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 flex h-full flex-col items-center justify-center px-5 text-center"
+        className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
       >
         <motion.span
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-md"
+          className="mb-2 text-[11px] font-medium tracking-[0.35em] text-white/75 uppercase sm:text-xs"
+          style={{ textShadow: "0 2px 10px rgba(0,0,0,.4)" }}
         >
-          🌱 Educação com carinho e propósito
+          Centro Educacional
         </motion.span>
 
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
+        <motion.h1
+          initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.18 }}
+          transition={{ duration: 0.9, delay: 0.22 }}
+          className="font-script text-balance max-w-6xl px-2 text-[4.2rem] leading-[0.9] text-white sm:text-[8rem] lg:text-[10.5rem]"
           style={{
             textShadow:
-              "0 2px 6px rgba(0,0,0,.55), 0 6px 28px rgba(0,0,0,.5), 0 1px 0 rgba(0,0,0,.4)",
+              "0 2px 4px rgba(0,0,0,.3), 0 14px 50px rgba(0,0,0,.42)",
           }}
-          className="font-script text-balance max-w-sm text-4xl leading-tight font-bold text-white sm:max-w-none sm:text-6xl sm:leading-none lg:text-7xl"
         >
-          Centro Educacional Positiva Idade
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-display text-balance mt-4 max-w-4xl text-4xl font-semibold leading-[1.15] text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.35)] sm:text-5xl lg:text-6xl"
-        >
-          Construindo futuros com cuidado, aprendizado e experiências
-          inesquecíveis.
+          Positiva Idade
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.44 }}
-          className="mt-6 max-w-2xl text-balance text-base leading-relaxed text-white/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)] sm:text-lg"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.34 }}
+          className="mt-7"
         >
-          Um ambiente acolhedor para desenvolver autonomia, criatividade e
-          crescimento desde os primeiros anos.
+          <HorizonMark light className="w-16" />
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-6 max-w-xl text-balance text-base leading-relaxed text-white/85 sm:text-lg"
+        >
+          Educação com cuidado, natureza e propósito — em frente ao mar de
+          Praia Brava, formamos crianças confiantes desde os primeiros anos.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.58 }}
-          className="mt-9 flex flex-col gap-4 sm:flex-row"
+          transition={{ duration: 0.8, delay: 0.46 }}
+          className="mt-9 flex flex-col gap-3.5 sm:flex-row"
         >
-          <Button href="#sobre" variant="secondary" className="min-w-[220px]">
-            Conheça a Escola
+          <Button href="#contato" variant="secondary" className="min-w-[210px]">
+            Agendar Visita
           </Button>
           <Button
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
             variant="ghost"
-            className="min-w-[220px]"
+            className="min-w-[210px]"
           >
             Fale Conosco
           </Button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3"
+        >
+          {TRUST_ITEMS.map((item) => (
+            <div key={item.label} className="flex items-center gap-2 text-white/80">
+              <item.icon className="size-4" />
+              <span className="text-[13px] font-medium tracking-wide">{item.label}</span>
+            </div>
+          ))}
         </motion.div>
       </motion.div>
 
@@ -158,9 +174,9 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.8 }}
-        className="absolute inset-x-0 bottom-7 z-10 flex justify-center"
+        className="absolute inset-x-0 bottom-7 z-10 hidden justify-center sm:flex"
       >
-        <div className="flex flex-col items-center gap-1.5 text-white/75 animate-bounce-slow">
+        <div className="flex flex-col items-center gap-1.5 text-white/70 animate-bounce-slow">
           <span className="text-xs font-medium tracking-wide">Role a página</span>
           <ChevronDown className="size-5" />
         </div>

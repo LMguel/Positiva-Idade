@@ -17,12 +17,10 @@ export function Localizacao() {
 
         <div className="mt-14 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-5">
           <Reveal className="lg:col-span-2">
-            <div className="flex h-full flex-col justify-between gap-8 rounded-3xl border border-primary/8 bg-card p-8 shadow-[0_2px_20px_-8px_rgba(21,51,33,0.08)]">
+            <div className="flex h-full flex-col justify-between gap-8 rounded-3xl border border-line bg-card p-8">
               <div className="flex flex-col gap-6">
                 <div className="flex items-start gap-4">
-                  <div className="inline-flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-primary text-white shadow-md shadow-primary/20">
-                    <MapPin className="size-5" />
-                  </div>
+                  <MapPin className="size-5 shrink-0 text-primary" strokeWidth={1.5} />
                   <div>
                     <h3 className="font-display text-lg font-semibold text-foreground">
                       Endereço
@@ -34,9 +32,7 @@ export function Localizacao() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="inline-flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-primary text-white shadow-md shadow-primary/20">
-                    <Phone className="size-5" />
-                  </div>
+                  <Phone className="size-5 shrink-0 text-primary" strokeWidth={1.5} />
                   <div>
                     <h3 className="font-display text-lg font-semibold text-foreground">
                       Telefone
@@ -62,7 +58,7 @@ export function Localizacao() {
           </Reveal>
 
           <Reveal delay={0.12} className="lg:col-span-3">
-            <div className="h-[360px] w-full overflow-hidden rounded-3xl border border-primary/8 shadow-[0_2px_20px_-8px_rgba(21,51,33,0.08)] lg:h-full">
+            <div className="h-[360px] w-full overflow-hidden rounded-3xl border border-line lg:h-full">
               <iframe
                 src={SITE.mapsEmbedSrc}
                 title="Mapa — Centro Educacional Positiva Idade"

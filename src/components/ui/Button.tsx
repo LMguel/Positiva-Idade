@@ -5,13 +5,13 @@ type ButtonVariant = "primary" | "secondary" | "ghost" | "outline-light";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-gradient-primary text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5",
+    "bg-primary text-white shadow-sm shadow-primary/20 hover:bg-primary-dark hover:-translate-y-0.5",
   secondary:
-    "bg-white text-primary border border-primary/15 hover:bg-primary/5 hover:-translate-y-0.5",
+    "bg-white text-primary border border-primary/15 hover:border-primary/30 hover:-translate-y-0.5",
   ghost:
-    "bg-transparent text-white border border-white/40 backdrop-blur-sm hover:bg-white/10 hover:-translate-y-0.5",
+    "bg-transparent text-white border border-white/35 backdrop-blur-sm hover:bg-white/10 hover:-translate-y-0.5",
   "outline-light":
-    "bg-white text-primary hover:bg-accent/20 hover:-translate-y-0.5",
+    "bg-white text-primary hover:bg-beige hover:-translate-y-0.5",
 };
 
 interface ButtonProps {
@@ -36,7 +36,7 @@ export function Button({
   rel,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-semibold tracking-tight transition-all duration-300 active:translate-y-0",
+    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-medium tracking-tight transition-all duration-300 active:translate-y-0",
     variantClasses[variant],
     className
   );

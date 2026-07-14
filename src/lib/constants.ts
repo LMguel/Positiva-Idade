@@ -20,7 +20,7 @@ export const NAV_LINKS = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre", href: "#sobre" },
   { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Estrutura", href: "#estrutura" },
+  { label: "Atividades", href: "#atividades" },
   { label: "Localização", href: "#localizacao" },
   { label: "Contato", href: "#contato" },
 ];

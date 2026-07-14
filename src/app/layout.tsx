@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces, Dancing_Script } from "next/font/google";
+import { Inter, Playfair_Display, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,18 +8,18 @@ const inter = Inter({
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const playfair = Playfair_Display({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const dancingScript = Dancing_Script({
+const greatVibes = Great_Vibes({
   variable: "--font-script",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -78,7 +78,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${fraunces.variable} ${dancingScript.variable} h-full antialiased scroll-smooth`}
+      className={`${inter.variable} ${playfair.variable} ${greatVibes.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}

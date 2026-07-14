@@ -34,8 +34,8 @@ export function Header() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
           scrolled
-            ? "bg-white/85 backdrop-blur-md shadow-[0_4px_30px_-10px_rgba(21,51,33,0.15)] py-2.5"
-            : "bg-transparent py-5"
+            ? "bg-white/90 backdrop-blur-md shadow-[0_1px_0_0_rgba(43,51,36,0.08)] py-3"
+            : "bg-transparent py-6"
         )}
       >
         <Container className="flex items-center justify-between">

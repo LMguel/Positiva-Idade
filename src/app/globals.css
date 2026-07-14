@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #1b5e20;
-  --color-primary-dark: #0f3d13;
-  --color-secondary: #2e7d32;
-  --color-accent: #81c784;
-  --color-background: #fafdf9;
-  --color-foreground: #153321;
-  --color-muted: #58705f;
+  --color-primary: #4b5d3a;
+  --color-primary-dark: #333f27;
+  --color-secondary: #6b7f52;
+  --color-accent: #8a9a6e;
+  --color-background: #faf9f5;
+  --color-foreground: #2b3324;
+  --color-muted: #6d7566;
   --color-card: #ffffff;
+  --color-beige: #f2ede1;
+  --color-line: #e7e3d8;
 }
 
 @theme inline {
@@ -20,6 +22,8 @@
   --color-foreground: var(--color-foreground);
   --color-muted: var(--color-muted);
   --color-card: var(--color-card);
+  --color-beige: var(--color-beige);
+  --color-line: var(--color-line);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-fraunces);
   --font-script: var(--font-script);
@@ -73,7 +77,7 @@ body {
 }
 
 .bg-gradient-primary {
-  background: linear-gradient(135deg, var(--color-primary), #388e3c);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
 }
 
 .text-balance {

@@ -2,7 +2,7 @@ import { BookOpen, Leaf, School, Palette, Heart, Laptop } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
-import { BlurCircle } from "@/components/ui/Decor";
+import { cn } from "@/lib/utils";
 
 const DIFERENCIAIS = [
   {
@@ -45,30 +45,34 @@ const DIFERENCIAIS = [
 
 export function Diferenciais() {
   return (
-    <section id="diferenciais" className="relative py-24 sm:py-28 overflow-hidden">
-      <BlurCircle className="-top-20 -left-24" size={340} color="bg-accent/15" />
-      <BlurCircle className="bottom-0 -right-20" size={300} color="bg-primary/10" />
-
-      <Container className="relative">
+    <section id="diferenciais" className="bg-beige/50 py-24 sm:py-32">
+      <Container>
         <SectionHeading
           eyebrow="Diferenciais"
           title="Por que escolher o Positiva Idade?"
           description="Unimos afeto, estrutura e propósito para oferecer uma educação verdadeiramente completa."
         />
 
-        <StaggerGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {DIFERENCIAIS.map((item) => (
+        <StaggerGroup className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-x-14 sm:grid-cols-2">
+          {DIFERENCIAIS.map((item, i) => (
             <StaggerItem key={item.title}>
-              <div className="group h-full rounded-3xl border border-primary/8 bg-card p-8 shadow-[0_2px_20px_-8px_rgba(21,51,33,0.08)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-16px_rgba(21,51,33,0.18)] hover:border-primary/15">
-                <div className="mb-5 inline-flex size-14 items-center justify-center rounded-2xl bg-gradient-primary text-white shadow-md shadow-primary/20 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                  <item.icon className="size-6" />
+              <div
+                className={cn(
+                  "group flex items-start gap-5 py-7",
+                  i >= 2 && "border-t border-line"
+                )}
+              >
+                <div className="flex size-11 shrink-0 items-center justify-center rounded-full border border-line bg-card transition-colors group-hover:border-primary/30">
+                  <item.icon className="size-[18px] text-primary" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-display text-xl font-semibold text-foreground">
-                  {item.title}
-                </h3>
-                <p className="mt-2.5 text-[15px] leading-relaxed text-muted">
-                  {item.description}
-                </p>
+                <div>
+                  <h3 className="font-display text-[15px] font-semibold text-foreground sm:text-base">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-muted sm:text-[15px]">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             </StaggerItem>
           ))}

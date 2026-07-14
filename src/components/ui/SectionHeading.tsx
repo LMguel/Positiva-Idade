@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
+import { HorizonMark } from "@/components/ui/HorizonMark";
 
 export function SectionHeading({
   eyebrow,
@@ -26,16 +27,22 @@ export function SectionHeading({
     >
       {eyebrow && (
         <Reveal>
-          <span
+          <div
             className={cn(
-              "inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide uppercase",
-              light
-                ? "bg-white/10 text-accent border border-white/15"
-                : "bg-primary/8 text-primary"
+              "flex items-center gap-3",
+              align === "center" ? "justify-center" : "justify-start"
             )}
           >
-            {eyebrow}
-          </span>
+            <HorizonMark light={light} />
+            <span
+              className={cn(
+                "text-xs font-semibold tracking-[0.2em] uppercase",
+                light ? "text-accent" : "text-secondary"
+              )}
+            >
+              {eyebrow}
+            </span>
+          </div>
         </Reveal>
       )}
       <Reveal delay={0.1}>
