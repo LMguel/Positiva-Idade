@@ -125,17 +125,32 @@ export function Header() {
             </Button>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setDrawerOpen(true)}
-            aria-label="Abrir menu"
-            className={cn(
-              "lg:hidden inline-flex items-center justify-center size-11 rounded-full transition-colors",
-              scrolled ? "text-primary bg-primary/8" : "text-white bg-white/15 backdrop-blur-sm"
-            )}
-          >
-            <Menu className="size-5" />
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <button
+              type="button"
+              onClick={() => setLoginOpen(true)}
+              aria-label="Entrar"
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-full px-4 h-11 text-sm font-medium transition-colors",
+                scrolled ? "text-primary bg-primary/8" : "text-white bg-white/15 backdrop-blur-sm"
+              )}
+            >
+              <LogIn className="size-4" />
+              Entrar
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setDrawerOpen(true)}
+              aria-label="Abrir menu"
+              className={cn(
+                "inline-flex items-center justify-center size-11 rounded-full transition-colors",
+                scrolled ? "text-primary bg-primary/8" : "text-white bg-white/15 backdrop-blur-sm"
+              )}
+            >
+              <Menu className="size-5" />
+            </button>
+          </div>
         </Container>
       </header>
 
@@ -193,7 +208,7 @@ export function Header() {
                 ))}
               </nav>
 
-              <div className="mt-auto p-6 flex flex-col gap-3">
+              <div className="mt-auto p-6">
                 <Button
                   href="#contato"
                   onClick={() => setDrawerOpen(false)}
@@ -201,17 +216,6 @@ export function Header() {
                   icon={<CalendarCheck className="size-4" />}
                 >
                   Agendar Visita
-                </Button>
-                <Button
-                  onClick={() => {
-                    setDrawerOpen(false);
-                    setLoginOpen(true);
-                  }}
-                  variant="secondary"
-                  className="w-full"
-                  icon={<LogIn className="size-4" />}
-                >
-                  Entrar
                 </Button>
               </div>
             </motion.div>
