@@ -193,7 +193,7 @@ export function Header() {
                 ))}
               </nav>
 
-              <div className="mt-auto p-6">
+              <div className="mt-auto p-6 flex flex-col gap-3">
                 <Button
                   href="#contato"
                   onClick={() => setDrawerOpen(false)}
@@ -201,6 +201,17 @@ export function Header() {
                   icon={<CalendarCheck className="size-4" />}
                 >
                   Agendar Visita
+                </Button>
+                <Button
+                  onClick={() => {
+                    setDrawerOpen(false);
+                    setLoginOpen(true);
+                  }}
+                  variant="secondary"
+                  className="w-full"
+                  icon={<LogIn className="size-4" />}
+                >
+                  Entrar
                 </Button>
               </div>
             </motion.div>
