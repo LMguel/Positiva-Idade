@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, CalendarCheck } from "lucide-react";
+import { Menu, X, CalendarCheck, LogIn, GraduationCap, BookOpen, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
@@ -13,6 +13,7 @@ import { Container } from "@/components/ui/Container";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -22,11 +23,29 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = drawerOpen ? "hidden" : "";
+    document.body.style.overflow = drawerOpen || loginOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [drawerOpen]);
+  }, [drawerOpen, loginOpen]);
+
+  const loginOptions = [
+    {
+      label: "Entrar como Aluno",
+      href: "https://escoladoc.com.br/aluno/login",
+      icon: GraduationCap,
+    },
+    {
+      label: "Entrar como Professor",
+      href: "https://escoladoc.com.br/professor/login",
+      icon: BookOpen,
+    },
+    {
+      label: "Entrar como Administrador",
+      href: "https://escoladoc.com.br/admin/login",
+      icon: ShieldCheck,
+    },
+  ];
 
   return (
     <>
@@ -89,13 +108,20 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
             <Button
               href="#contato"
               variant={scrolled ? "primary" : "ghost"}
               icon={<CalendarCheck className="size-4" />}
             >
               Agendar Visita
+            </Button>
+            <Button
+              onClick={() => setLoginOpen(true)}
+              variant={scrolled ? "secondary" : "ghost"}
+              icon={<LogIn className="size-4" />}
+            >
+              Entrar
             </Button>
           </div>
 
@@ -177,6 +203,61 @@ export function Header() {
                   Agendar Visita
                 </Button>
               </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {loginOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setLoginOpen(false)}
+              className="fixed inset-0 z-[60] bg-primary-dark/50 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 260 }}
+              className="fixed inset-y-0 right-0 z-[70] w-[82%] max-w-sm bg-background shadow-2xl flex flex-col"
+            >
+              <div className="flex items-center justify-between px-6 pt-6 pb-4">
+                <span className="text-lg font-semibold text-foreground">Entrar</span>
+                <button
+                  type="button"
+                  onClick={() => setLoginOpen(false)}
+                  aria-label="Fechar menu"
+                  className="inline-flex items-center justify-center size-10 rounded-full bg-primary/8 text-primary"
+                >
+                  <X className="size-5" />
+                </button>
+              </div>
+
+              <nav className="flex flex-col gap-3 px-6 mt-4">
+                {loginOptions.map((option, i) => (
+                  <motion.div
+                    key={option.href}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.08 + i * 0.06 }}
+                  >
+                    <Link
+                      href={option.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setLoginOpen(false)}
+                      className="flex items-center gap-3 rounded-2xl border border-foreground/10 px-5 py-4 text-base font-medium text-foreground transition-colors hover:border-primary/30 hover:bg-primary/5"
+                    >
+                      <option.icon className="size-5 text-primary" />
+                      {option.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
             </motion.div>
           </>
         )}
